@@ -180,3 +180,11 @@ func (now *Now) Between(time1, time2 string) bool {
 	restime2 := now.MustParse(time2)
 	return now.After(restime) && now.Before(restime2)
 }
+
+func (now *Now) IST() time.Time {
+	istLocation, err := time.LoadLocation("Asia/Kolkata")
+	if err != nil {
+		panic("Asia/Kolkata Location not available")
+	}
+	return now.In(istLocation)
+}

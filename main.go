@@ -101,3 +101,11 @@ func MustParse(strs ...string) time.Time {
 func Between(time1, time2 string) bool {
 	return New(time.Now()).Between(time1, time2)
 }
+
+func IST() time.Time {
+	istLocation, err := time.LoadLocation("Asia/Kolkata")
+	if err != nil {
+		panic("Asia/Kolkata Location not available")
+	}
+	return New(time.Now()).In(istLocation)
+}
